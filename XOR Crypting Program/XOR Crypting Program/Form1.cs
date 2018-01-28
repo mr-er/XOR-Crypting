@@ -40,9 +40,9 @@ namespace XOR_Crypting_Program
                 inputFile = read.ReadToEnd();
                 read.Dispose();
                 richTextBox1.Text = richTextBox1.Text + "<<Wczytano dane wejściowe o długości "+ inputFile.Length +">>\n";
-                if (inputFile.Length < 30)
+                if (inputFile.Length < 100)
                 {
-                    richTextBox1.Text = richTextBox1.Text + "<<" + inputFile + ">>\n";
+                    richTextBox1.Text = richTextBox1.Text + "<<\n" + inputFile + "\n>>\n";
                 }
                 outputFile = inputFile;
                 button1.Enabled = false;
@@ -78,9 +78,10 @@ namespace XOR_Crypting_Program
             {
                 outputFile = doXor(outputFile, richTextBox2.Text);
                 richTextBox1.Text = richTextBox1.Text + "<<Dane zaszyfrowane>>\n";
-                if (outputFile.Length < 30)
+                if (outputFile.Length < 100)
                 {
-                    richTextBox1.Text = richTextBox1.Text + "<<" + outputFile + ">>\n";
+                    richTextBox1.Text = richTextBox1.Text + "<<\n" + outputFile;
+                    richTextBox1.Text = richTextBox1.Text + "\n>>\n";
                 }
                 button5.Enabled = false;
                 button6.Enabled = true;
@@ -144,9 +145,13 @@ namespace XOR_Crypting_Program
         {
             outputFile = doXor(outputFile, richTextBox2.Text);
             richTextBox1.Text = richTextBox1.Text + "<<Plik został rozszyfrowany.>>\n";
-            richTextBox1.Text = richTextBox1.Text + "<<" + outputFile + ">>\n";
+            if (inputFile.Length < 100)
+            {
+                richTextBox1.Text = richTextBox1.Text + "<<\n" + outputFile + "\n>>\n";
+            }
             button6.Enabled = false;
             button5.Enabled = true; 
         }
     }
+
 }

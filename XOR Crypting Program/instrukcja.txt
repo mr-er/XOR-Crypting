@@ -1,0 +1,8 @@
+Program wykorzystuje XOR i haslo do szyfrowania. 
+
+Do dzialania program wymaga tekstowego pliku wejsciowego oraz podania hasla. 
+Haslo mozna zapisac do pliku i wczytywac. 
+
+Nie mozna zmieniac pliku wejsciowego do czasu zapisania pliku wyjsciowego. Konsola nie wyswietla plików o dlugosci wyzszej niz 100. 
+
+Podwójna operacja szyfrowania tym samym kluczem oznacza deszyfracje pliku. 
