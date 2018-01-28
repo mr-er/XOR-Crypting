@@ -18,90 +18,115 @@ namespace XOR_Crypting_Program
             InitializeComponent();
         }
 
-        private string inputFile;
         private string outputFile;
-        private string passwordFile;
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            readInputFile();
-        }
 
         //Wczytywanie danych wejściowych 
-        private void readInputFile()
-        {      
+        private void button1_Click(object sender, EventArgs e)
+        {
+            outputFile = readFile("Wczytaj plik do zaszyfrowania", "Text files (*.txt)|*.txt", " wejściowego", " wejściowego");
+            if (outputFile.Length > 0)
+            {
+                bDoXOR.Enabled = true;
+            }
+            else
+            {
+                bDoXOR.Enabled = false;
+            }
+        }
+
+        //Metoda zapisująca pliki
+        private bool saveFile(string title, string filter, string file, string opening, string closing)
+        {
+            rTBConsole.Text = rTBConsole.Text + "<<Zapisywanie pliku" + opening + ">>\n";
+            SaveFileDialog save = new SaveFileDialog();
+            save.Title = title;
+            save.Filter = filter;
+            bool result = save.ShowDialog() == DialogResult.OK;
+            if (result)
+            {
+                StreamWriter write = new StreamWriter(File.Create(save.FileName));
+                write.Write(file);
+                write.Dispose();
+                rTBConsole.Text = rTBConsole.Text + "<<Zapisano plik ''" + save.FileName + "''>>\n";
+                return result; 
+            }
+            else
+            {
+                rTBConsole.Text = rTBConsole.Text + "<<Przerwano zapisywanie pliku" + closing + ">>\n";
+                return result;
+            }
+        }
+
+        //Metoda wczytująca pliki 
+        private string readFile(string title, string filter, string opening, string closing)
+        {
+            rTBConsole.Text = rTBConsole.Text + "<<Wczytywanie pliku"+opening+">>\n";
+            string file = "";
             OpenFileDialog openInputFile = new OpenFileDialog();
-            openInputFile.Title = "Otwórz plik z danymi wejściowymi";
-            openInputFile.Filter = "Text files (*.txt)|*.txt";
+            openInputFile.Title = title;
+            openInputFile.Filter = filter;
+
             if (openInputFile.ShowDialog() == DialogResult.OK)
             {
                 StreamReader read = new StreamReader(File.OpenRead(openInputFile.FileName));
 
-                inputFile = read.ReadToEnd();
+                file = read.ReadToEnd();
                 read.Dispose();
-                richTextBox1.Text = richTextBox1.Text + "<<Wczytano dane wejściowe o długości "+ inputFile.Length +">>\n";
-                if (inputFile.Length < 100)
+                rTBConsole.Text = rTBConsole.Text + "<<Wczytano plik ''" + openInputFile.FileName + "''>>\n";
+                //Jeżeli długość mniejsza niż 100 to zwartość pliku zostanie wyświetlona w konsoli. 
+                if (file.Length < 100)
                 {
-                    richTextBox1.Text = richTextBox1.Text + "<<\n" + inputFile + "\n>>\n";
+                    rTBConsole.Text = rTBConsole.Text + "<<\n" + file + "\n>>\n";
+                    return file;
                 }
-                outputFile = inputFile;
-                button1.Enabled = false;
-                button5.Enabled = true;
+                return file;
+            }
+            else
+            {
+                rTBConsole.Text = rTBConsole.Text + "<<Przerwano wczytywanie pliku"+closing+">>\n";
+                return file;
             }
         }
+
 
         //Zapisowanie pliku wyjściowego 
         private void button2_Click(object sender, EventArgs e)
-        {   
-            SaveFileDialog save = new SaveFileDialog();
-            save.Title = "Zapisz plik z danymi wyjściowymi";
-            save.Filter = "Text files (*.txt)|*.txt";
-            if (save.ShowDialog() == DialogResult.OK)
-            {
-                StreamWriter write = new StreamWriter(File.Create(save.FileName));
-
-                write.Write(outputFile);
-                write.Dispose();
-                richTextBox1.Text = "<<Zapisano plik z danymi wyjściowymi>>\n";
-
-                button2.Enabled = false;
-                button1.Enabled = true;
-                button6.Enabled = false;
-                button5.Enabled = false; 
-            }
-        }
+        {
+            saveFile("Zapisowanie pliku wyjściowego", "Text files(*.txt) | *.txt", outputFile, " wyjściowego", " wyjściowego");
+        } 
 
         //Wykonywanie szyfrowania
         private void button5_Click(object sender, EventArgs e)
         {
+            rTBConsole.Text = rTBConsole.Text + "<<Próba szyfrowania>>\n";
             try
             {
-                outputFile = doXor(outputFile, richTextBox2.Text);
-                richTextBox1.Text = richTextBox1.Text + "<<Dane zaszyfrowane>>\n";
+                outputFile = doXor(outputFile, rTBPassword.Text);
                 if (outputFile.Length < 100)
                 {
-                    richTextBox1.Text = richTextBox1.Text + "<<\n" + outputFile;
-                    richTextBox1.Text = richTextBox1.Text + "\n>>\n";
+                    rTBConsole.Text = rTBConsole.Text + "<<\n" + outputFile;
+                    rTBConsole.Text = rTBConsole.Text + "\n>>\n";
                 }
-                button5.Enabled = false;
-                button6.Enabled = true;
-                button2.Enabled = true;
+                rTBConsole.Text = rTBConsole.Text + "<<Próba udana>>\n";
+                bSaveOutputToFile.Enabled = true;
             }
             catch
             {
-                richTextBox1.Text = richTextBox1.Text + "<<Plik wejściowy oraz hasło muszą zawierać przynajmniej jeden znak.>>\n";
+                rTBConsole.Text = rTBConsole.Text + "<<Plik wejściowy oraz hasło muszą zawierać przynajmniej jeden znak.>>\n";
+                rTBConsole.Text = rTBConsole.Text + "<<Próba nieudana>>\n";
             }
         }
 
-        //Szyfrowanie
-        private string doXor(string inputFile, string inputPassword)
+        //Algorytm szyfrujący
+        private string doXor(string file, string inputPassword)
         {
-                char[] input = inputFile.ToArray();
+                char[] inputFile = file.ToArray();
                 char[] password = inputPassword.ToArray();
-                char[] output = new char[input.Length];
-                for (int i = 0; i < input.Length; i++)
+                char[] output = new char[file.Length];
+                for (int i = 0; i < file.Length; i++)
                 {
-                    output[i] = (char)(input[i] ^ password[i % password.Length]);
+                    output[i] = (char)(inputFile[i] ^ password[i % password.Length]);
                 }
                 return new string(output);
         }
@@ -109,49 +134,18 @@ namespace XOR_Crypting_Program
 
         //Zapisywanie hasła do pliku
         private void button3_Click(object sender, EventArgs e)
-        { 
-            SaveFileDialog save = new SaveFileDialog();
-            save.Title = "Zapisz plik z hasłem";
-            save.Filter = "Password files (*.password)|*.password";
-            if (save.ShowDialog() == DialogResult.OK)
-            {
-                StreamWriter write = new StreamWriter(File.Create(save.FileName));
-
-                write.Write(richTextBox2.Text);
-                write.Dispose();
-                richTextBox1.Text = richTextBox1.Text + "<<Zapisano plik z hasłem>>\n";
-            }
+        {
+            saveFile("Zapisowanie pliku z hasłem", "Password files(*.password) | *.password", rTBPassword.Text, " z hasłem", " z hasłem");
         }
         
         //Wczytywanie hasła 
         private void button4_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openPasswordFile = new OpenFileDialog();
-            openPasswordFile.Title = "Otwórz plik z hasłem";
-            openPasswordFile.Filter = "Password files (*.password)|*.password";
-            if (openPasswordFile.ShowDialog() == DialogResult.OK)
-            {
-                StreamReader read = new StreamReader(File.OpenRead(openPasswordFile.FileName));
-
-                passwordFile = read.ReadToEnd();
-                read.Dispose();
-                richTextBox2.Text = passwordFile;
-                richTextBox1.Text = richTextBox1.Text + "<<Wczytano hasło o długości " + passwordFile.Length + ">>\n";
-            }
+            rTBPassword.Text = readFile("Wczytaj plik z hasłem", "Password files (*.password)|*.password", " z hasłem", " z hasłem");
         }
 
-        //Deszyfrowanie pliku
-        private void button6_Click(object sender, EventArgs e)
-        {
-            outputFile = doXor(outputFile, richTextBox2.Text);
-            richTextBox1.Text = richTextBox1.Text + "<<Plik został rozszyfrowany.>>\n";
-            if (inputFile.Length < 100)
-            {
-                richTextBox1.Text = richTextBox1.Text + "<<\n" + outputFile + "\n>>\n";
-            }
-            button6.Enabled = false;
-            button5.Enabled = true; 
-        }
+
+
     }
 
 }

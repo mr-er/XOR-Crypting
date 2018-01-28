@@ -28,66 +28,66 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.bInputFileOpen = new System.Windows.Forms.Button();
+            this.bSaveOutputToFile = new System.Windows.Forms.Button();
+            this.rTBConsole = new System.Windows.Forms.RichTextBox();
+            this.bSavePasswordToFile = new System.Windows.Forms.Button();
+            this.bInputPasswordOpen = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
-            this.button5 = new System.Windows.Forms.Button();
-            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
-            this.button6 = new System.Windows.Forms.Button();
+            this.bDoXOR = new System.Windows.Forms.Button();
+            this.rTBPassword = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
-            // button1
+            // bInputFileOpen
             // 
-            this.button1.BackColor = System.Drawing.SystemColors.Control;
-            this.button1.Location = new System.Drawing.Point(22, 12);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(131, 53);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Otwórz plik z danymi wejściowymi";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.bInputFileOpen.BackColor = System.Drawing.SystemColors.Control;
+            this.bInputFileOpen.Location = new System.Drawing.Point(22, 12);
+            this.bInputFileOpen.Name = "bInputFileOpen";
+            this.bInputFileOpen.Size = new System.Drawing.Size(131, 53);
+            this.bInputFileOpen.TabIndex = 0;
+            this.bInputFileOpen.Text = "Otwórz plik z danymi wejściowymi";
+            this.bInputFileOpen.UseVisualStyleBackColor = false;
+            this.bInputFileOpen.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button2
+            // bSaveOutputToFile
             // 
-            this.button2.Enabled = false;
-            this.button2.Location = new System.Drawing.Point(183, 196);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(664, 23);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Zapisz plik";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.bSaveOutputToFile.Enabled = false;
+            this.bSaveOutputToFile.Location = new System.Drawing.Point(183, 226);
+            this.bSaveOutputToFile.Name = "bSaveOutputToFile";
+            this.bSaveOutputToFile.Size = new System.Drawing.Size(664, 23);
+            this.bSaveOutputToFile.TabIndex = 1;
+            this.bSaveOutputToFile.Text = "Zapisz plik";
+            this.bSaveOutputToFile.UseVisualStyleBackColor = true;
+            this.bSaveOutputToFile.Click += new System.EventHandler(this.button2_Click);
             // 
-            // richTextBox1
+            // rTBConsole
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(183, 12);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(664, 178);
-            this.richTextBox1.TabIndex = 3;
-            this.richTextBox1.Text = "";
+            this.rTBConsole.Location = new System.Drawing.Point(183, 12);
+            this.rTBConsole.Name = "rTBConsole";
+            this.rTBConsole.ReadOnly = true;
+            this.rTBConsole.Size = new System.Drawing.Size(664, 208);
+            this.rTBConsole.TabIndex = 3;
+            this.rTBConsole.Text = "";
             // 
-            // button3
+            // bSavePasswordToFile
             // 
-            this.button3.Location = new System.Drawing.Point(22, 255);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(131, 23);
-            this.button3.TabIndex = 4;
-            this.button3.Text = "Zapisz hasło do pliku";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.bSavePasswordToFile.Location = new System.Drawing.Point(22, 255);
+            this.bSavePasswordToFile.Name = "bSavePasswordToFile";
+            this.bSavePasswordToFile.Size = new System.Drawing.Size(131, 23);
+            this.bSavePasswordToFile.TabIndex = 4;
+            this.bSavePasswordToFile.Text = "Zapisz hasło do pliku";
+            this.bSavePasswordToFile.UseVisualStyleBackColor = true;
+            this.bSavePasswordToFile.Click += new System.EventHandler(this.button3_Click);
             // 
-            // button4
+            // bInputPasswordOpen
             // 
-            this.button4.Location = new System.Drawing.Point(22, 124);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(131, 23);
-            this.button4.TabIndex = 9;
-            this.button4.Text = "Wczytaj hasło";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.bInputPasswordOpen.Location = new System.Drawing.Point(22, 124);
+            this.bInputPasswordOpen.Name = "bInputPasswordOpen";
+            this.bInputPasswordOpen.Size = new System.Drawing.Size(131, 23);
+            this.bInputPasswordOpen.TabIndex = 9;
+            this.bInputPasswordOpen.Text = "Wczytaj hasło";
+            this.bInputPasswordOpen.UseVisualStyleBackColor = true;
+            this.bInputPasswordOpen.Click += new System.EventHandler(this.button4_Click);
             // 
             // label4
             // 
@@ -98,51 +98,39 @@
             this.label4.TabIndex = 10;
             this.label4.Text = "Hasło:";
             // 
-            // button5
+            // bDoXOR
             // 
-            this.button5.Enabled = false;
-            this.button5.Location = new System.Drawing.Point(183, 226);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(664, 23);
-            this.button5.TabIndex = 11;
-            this.button5.Text = "Wykonaj szyfrowanie";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.bDoXOR.Enabled = false;
+            this.bDoXOR.Location = new System.Drawing.Point(183, 255);
+            this.bDoXOR.Name = "bDoXOR";
+            this.bDoXOR.Size = new System.Drawing.Size(664, 23);
+            this.bDoXOR.TabIndex = 11;
+            this.bDoXOR.Text = "Wykonaj szyfrowanie/deszyfrowanie";
+            this.bDoXOR.UseVisualStyleBackColor = true;
+            this.bDoXOR.Click += new System.EventHandler(this.button5_Click);
             // 
-            // richTextBox2
+            // rTBPassword
             // 
-            this.richTextBox2.Location = new System.Drawing.Point(22, 153);
-            this.richTextBox2.MaxLength = 3000;
-            this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(131, 96);
-            this.richTextBox2.TabIndex = 12;
-            this.richTextBox2.Text = "";
-            // 
-            // button6
-            // 
-            this.button6.Enabled = false;
-            this.button6.Location = new System.Drawing.Point(183, 255);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(664, 23);
-            this.button6.TabIndex = 13;
-            this.button6.Text = "Wykonaj deszyfrowanie";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
+            this.rTBPassword.Location = new System.Drawing.Point(22, 153);
+            this.rTBPassword.MaxLength = 3000;
+            this.rTBPassword.Name = "rTBPassword";
+            this.rTBPassword.Size = new System.Drawing.Size(131, 96);
+            this.rTBPassword.TabIndex = 12;
+            this.rTBPassword.Text = "";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(870, 285);
-            this.Controls.Add(this.button6);
-            this.Controls.Add(this.richTextBox2);
-            this.Controls.Add(this.button5);
+            this.Controls.Add(this.rTBPassword);
+            this.Controls.Add(this.bDoXOR);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.richTextBox1);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.bInputPasswordOpen);
+            this.Controls.Add(this.bSavePasswordToFile);
+            this.Controls.Add(this.rTBConsole);
+            this.Controls.Add(this.bSaveOutputToFile);
+            this.Controls.Add(this.bInputFileOpen);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "Form1";
@@ -154,15 +142,14 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button bInputFileOpen;
+        private System.Windows.Forms.Button bSaveOutputToFile;
+        private System.Windows.Forms.RichTextBox rTBConsole;
+        private System.Windows.Forms.Button bSavePasswordToFile;
+        private System.Windows.Forms.Button bInputPasswordOpen;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.RichTextBox richTextBox2;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button bDoXOR;
+        private System.Windows.Forms.RichTextBox rTBPassword;
     }
 }
 
